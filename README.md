@@ -1,66 +1,37 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Front-end Developer Testing Project
 
-## About Laravel
+The goal of this project is to create a "Task Manager" web application with Vue.js and Laravel as the backend API.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- User should be able to view a list of tasks in a table (display task name, description, and status).
+- User should be able to click on a task to view more information about it (additional info such as task deadline, priority, etc.) on a modal in the same page.
+- User should be able to "take on" a task by clicking an action button in the table row. This should update the task's status to "In Progress".
+- User should be able to update a task's information and status ("In Progress", "Completed", etc.).
+- User should be able to mark a task as "Complete" with an action button on the task view.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Specifics
 
-## Learning Laravel
+- Implement the front-end using Vue.js. You can use other libraries or frameworks (like - Bootstrap or Tailwind CSS) for styling, but the interactive elements should primarily be implemented with Vue.js.
+- Implement the back-end API using Laravel. The API should support operations to create, read, update, and delete (CRUD) tasks.
+- For the purpose of this project, you can use a local SQLite database, or another database of your choice. You should use Laravel's Eloquent ORM for database operations.
+- You can use dummy data for the task list.
+- The project should include error handling. For example, it should handle the case where a request to the Laravel API fails.
+- Include instructions on how to set up and run your project.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Using this project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+If you'd like to use this as the starting point, you can remove the boilerplate and install what you need. The focus should remain on the front-end task. You can also check Laravel Documentation on [how to get starte with Laravel](https://laravel.com/docs/10.x/installation)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### What We're Looking For
 
-## Laravel Sponsors
+- Code quality: Your code should be well-organized and readable, with comments where necessary.
+- Understanding of Vue.js: You should use Vue.js features effectively, including components, directives, and props.
+- Understanding of asynchronous JavaScript: You should use async/await, promises, or callbacks appropriately to handle asynchronous operations, like requests to the Laravel API.
+- Error handling: Your application should handle potential errors gracefully.
+- User experience: The application should be easy to use and navigate.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Submission
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Please submit a link to a GitHub repository containing your project. The repository should include all code for the project, as well as a README with setup and run instructions.
