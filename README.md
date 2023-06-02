@@ -25,12 +25,15 @@ The goal of this project is to create a "Task Manager" web application with Vue.
 If you'd like to use this as the starting point, you can remove the boilerplate and install what you need. The focus should remain on the front-end task. You can also check Laravel Documentation on [how to get starte with Laravel](https://laravel.com/docs/10.x/installation)
 
 To use this project you can clone this repo and start the application setup, make sure you have `PHP/composer` and `Docker` installed:
--  Bring the laravel helper (npm and tests) containers up with `sail up -d`
+-  Save the file `.env.example` as `.env`
 -  Run `composer install` To install dependencies
+-  Bring the laravel sail containers up with `./vendor/bin/sail up -d`
 -  Run `./vendor/bin/sail npm install` To use the npm from the default docker provided by Laravel Sail 
--  Run `php artisan migrate` To initialize the sqlite database
--  Run `php artisan serve` To run the application and access on `http://localhost:8000/`
--  Run `./vendor/bin/sail npm run dev` To build and watch for changes
+-  Run `./vendor/bin/sail artisan migrate` To initialize the sqlite database (it should create database/database.sqlite file)
+-  Run `./vendor/bin/sail npm run build` To build and to watch for changes replace `build` with `dev`
+-  Go to http://localhost:8080 and register an account, on the dashboard page you can work on the task
+
+![Preview](./preview.jpg?raw=true "Dashboard Preview")
 
 ### What We're Looking For
 
