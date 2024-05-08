@@ -1,5 +1,5 @@
 
-## Front-end Developer Testing Project
+## Newswire Developer Testing Project
 
 The goal of this project is to create a "Task Manager" web application with Vue.js and Laravel as the backend API.
 
