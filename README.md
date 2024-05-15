@@ -46,3 +46,5 @@ To use this project you can clone this repo and start the application setup, mak
 ### Submission
 
 Please submit a link to a GitHub repository containing your project. The repository should include all code for the project, as well as a README with setup and run instructions.
+
+Remember to treat this as if we are working in a team that review each other’s code and we are deploying this change to production.
