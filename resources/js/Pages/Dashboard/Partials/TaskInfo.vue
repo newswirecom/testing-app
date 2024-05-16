@@ -10,41 +10,69 @@ import normalizeTaskStatus from "@/helpers/normalizeTaskStatus.js";
 import normalizeTaskPriority from "@/helpers/normalizeTaskPriority.js";
 import TextareaInput from "@/Components/TextareaInput.vue";
 import TaskStatusEnum from "@/Enums/TaskStatusEnum.ts";
+import DangerButton from "@/Components/DangerButton.vue";
 
+const emit = defineEmits(['closeModal']);
 
-const form = useForm(props.task);
-const editingInfo = ref(false);
+const props = defineProps({
+    task: {
+        type: Object,
+        required: false,
+    },
+});
+
+const new_task = {
+    name: '',
+    description: '',
+    status: '',
+    priority: '',
+    due_at: '',
+}
+
+const form = useForm(props.task != null ? props.task : new_task);
+const editingInfo = ref(props.task == null);
 const nameInput = ref(null);
 const descriptionInput = ref(null);
 const statusInput = ref(null);
 const priorityInput = ref(null);
 const deadlineInput = ref(null);
 
-const emit = defineEmits(['update:completed']);
-
-const props = defineProps({
-    task: {
-        type: Object,
-        required: true,
-    },
-});
-
 const cancelEdit = () => {
-    editingInfo.value = false;
     form.reset();
+
+    if (props.task) {
+        editingInfo.value = false;
+        return;
+    }
+
+    emit('closeModal');
 };
 
 const save = () => {
-    form.patch(route('tasks.update', {task: props.task.id}), {
+    const options = {
         preserveScroll: true,
-        onSuccess: () => {
-            editingInfo.value = false;
-        },
+        onSuccess: () => emit('closeModal'),
         onError: () => {
             // Handle Error here - Add a message to user or something like that
             // Reset the form field to initial value?
-        },
-    });
+            // use InputRef if we want to focus an element - Need to define what field to focus if we have multiple errors
+        }
+    };
+
+    if (props.task) {
+        updateTask(route('tasks.update', {task: props.task.id}), options);
+        return;
+    }
+
+    createTask(route('tasks.create'), options);
+};
+
+const createTask = (url, options) => {
+    form.post(url, options);
+};
+
+const updateTask = (url, options) => {
+    form.patch(url, options);
 };
 
 const completeTask = () => {
@@ -52,9 +80,15 @@ const completeTask = () => {
 
     router.patch(url, { status: TaskStatusEnum.COMPLETED }, {
         preserveScroll: true,
-        onSuccess: () => {
-            emit('update:completed');
-        },
+        onSuccess: () => emit('closeModal'),
+        onError: () => console.log('error'), // Handle Error here - Add a message to user or something like that
+    });
+};
+
+const deleteTask = () => {
+    form.delete(route('tasks.destroy', {task: props.task.id}), {
+        preserveScroll: true,
+        onSuccess: () => emit('closeModal'),
         onError: () => console.log('error'), // Handle Error here - Add a message to user or something like that
     });
 };
@@ -66,7 +100,14 @@ const completeTask = () => {
         <div class="flex flex-row justify-between">
             <h3 class="text-base font-semibold leading-7 text-gray-900">Task Details</h3>
 
-            <template v-if="task.user_id === $page.props.auth.user.id && !editingInfo">
+            <template v-if="editingInfo">
+                <div class="space-x-2">
+                    <SecondaryButton @click="cancelEdit">Cancel</SecondaryButton>
+                    <SecondaryButton @click="save">Save</SecondaryButton>
+                </div>
+            </template>
+
+            <template v-else-if="task != null && task.user_id === $page.props.auth.user.id">
                 <div class="space-x-2">
                     <SecondaryButton @click="editingInfo=true">Edit</SecondaryButton>
 
@@ -75,15 +116,8 @@ const completeTask = () => {
                     </template>
                 </div>
             </template>
-
-            <template v-else-if="editingInfo">
-                <div class="space-x-2">
-                    <SecondaryButton @click="cancelEdit">Cancel</SecondaryButton>
-                    <SecondaryButton @click="save">Save</SecondaryButton>
-                </div>
-            </template>
         </div>
-        <div class="mt-6 border-t border-gray-100">
+        <div class="mt-6 border-t border-gray-100 flex flex-col">
 
                 <div class="mt-6">
                     <InputLabel for="Name" value="Name" />
@@ -167,6 +201,9 @@ const completeTask = () => {
                     <InputError :message="form.errors.due_at" class="mt-2" />
                 </div>
 
+            <template v-if="editingInfo && task != null && task.user_id === $page.props.auth.user.id">
+                <danger-button @click="deleteTask" class="mt-6 self-end">Delete</danger-button>
+            </template>
         </div>
     </div>
 </template>
