@@ -76,13 +76,8 @@ const updateTask = (url, options) => {
 };
 
 const completeTask = () => {
-    const url = route('tasks.update', {task: props.task.id});
-
-    router.patch(url, { status: TaskStatusEnum.COMPLETED }, {
-        preserveScroll: true,
-        onSuccess: () => emit('closeModal'),
-        onError: () => console.log('error'), // Handle Error here - Add a message to user or something like that
-    });
+    form.status = TaskStatusEnum.COMPLETED;
+    save();
 };
 
 const deleteTask = () => {
