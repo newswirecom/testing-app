@@ -20,7 +20,7 @@ class TaskDetailsResource extends JsonResource
             'description' => $this->description,
             'status' => $this->status,
             'priority' => $this->priority,
-            'due_at' => $this->due_at->format('Y-m-d'),
+            'due_at' => $this->due_at != null ? $this->due_at->format('Y-m-d') : null,
             'user_id' => $this->user != null ? $this->user->id : null,
             'user_name' => $this->user != null ? $this->user->name : null,
         ];
