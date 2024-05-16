@@ -15,6 +15,10 @@ defineProps({
 
 const displayCreateTaskModal = ref(null);
 
+const closeModal = () => {
+    displayCreateTaskModal.value = false;
+};
+
 </script>
 
 <template>
@@ -27,15 +31,16 @@ const displayCreateTaskModal = ref(null);
 
         <section class="max-w-7xl mx-auto sm:px-6 lg:px-4 py-4 my-4">
             <section class="py-4 my-6">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-row justify-between items-center">
                     <h2 class="p-6 text-gray-900">Welcome {{ $page.props.auth.user.name }}</h2>
+                    <secondary-button @click="displayCreateTaskModal=true" class="m-6">Create task</secondary-button>
                 </div>
             </section>
 
             <tasks-list :tasks="tasks"/>
 
-            <modal :show="displayCreateTaskModal" @close="null">
-                <task-info :task="null" @update:completed="null"/>
+            <modal :show="displayCreateTaskModal" @close="closeModal">
+                <task-info @close-modal="closeModal"/>
             </modal>
         </section>
     </AuthenticatedLayout>

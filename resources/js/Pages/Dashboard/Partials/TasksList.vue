@@ -72,7 +72,7 @@ const closeModal = () => {
                         <span @click="displayTaskInfoModalDetails(task)" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">View</span>
                     </td>
                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <template v-if="task.status === TaskStatusEnum.OPEN">
+                        <template v-if="task.user_id !== $page.props.auth.user.id">
                             <span @click="takeOn(task.id)" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">Take On</span>
                         </template>
                     </td>
@@ -83,6 +83,6 @@ const closeModal = () => {
     </section>
 
     <modal :show="displayTaskInfoModal" @close="closeModal">
-        <task-info :task="selectedTask" @update:completed="closeModal"/>
+        <task-info :task="selectedTask" @close-modal="closeModal"/>
     </modal>
 </template>
